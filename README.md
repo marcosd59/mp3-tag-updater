@@ -29,9 +29,11 @@ Este proyecto proporciona herramientas para actualizar los metadatos de archivos
 ## Ejemplos de Uso
 ```bash
 python main.py
+```
 
+```bash
 python pista.py
-
+```
 
 ## Uso
 1. **Clonar el repositorio:**
