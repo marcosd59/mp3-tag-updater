@@ -23,7 +23,7 @@ def modificar_numero_pista(ruta_carpeta):
             continue
 
         if 'tracknumber' in audio:
-            audio['tracknumber'] = str(0)
+            audio['tracknumber'] = str(i)
             audio.save()
             print(f"Número de pista actualizado a {i}/{total_canciones} para -> {archivo}")
         else:
