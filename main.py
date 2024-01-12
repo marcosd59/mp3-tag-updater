@@ -2,7 +2,7 @@
 #     File Name           :     main.py
 #     Created By          :     Marcos Damian Pool Canul
 #     Creation Date       :     [2024-01-12 10:10]
-#     Last Modified       :     [2024-01-12 11:00]
+#     Last Modified       :     [2024-01-12 16:00]
 #     Description         :     Cambia el nombre, num. pista, album y genero.
 #####################################################################################
 
