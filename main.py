@@ -1,13 +1,15 @@
-#######################################################################################
+#####################################################################################
 #     File Name           :     main.py
 #     Created By          :     Marcos Damian Pool Canul
 #     Creation Date       :     [2024-01-12 10:10]
 #     Last Modified       :     [2024-01-12 11:00]
-#     Description         :     Renombrar en num. de pista y el nombre del album.
-#######################################################################################
+#     Description         :     Cambia el nombre, num. pista, album y genero.
+#####################################################################################
 
 import os
 from mutagen.easyid3 import EasyID3
+from mutagen import File
+from mutagen.flac import FLAC
 
 def num_pista(archivo):
     """
@@ -20,9 +22,9 @@ def num_pista(archivo):
     except (KeyError, ValueError):
         return None
 
-def renombrar(ruta, album):
+def renombrar(ruta, album, genero):
     """
-    Renombra archivos MP3 en la carpeta especificada y actualiza el metadato del álbum.
+    Renombra archivos MP3 en la carpeta especificada y actualiza el metadato del álbum y género.
     """
     archivos = os.listdir(ruta)
     archivos_mp3 = [archivo for archivo in archivos if archivo.lower().endswith(".mp3")]
@@ -45,14 +47,22 @@ def renombrar(ruta, album):
             audio['album'] = album
             audio.save()
 
-            print(f"Album actualizado a \"{album}\" para -> {nuevo_nombre}")
+            # Actualiza el metadato del género
+            audio['genre'] = genero
+            audio.save()
+
+            print(f"Album actualizado a \"{album}\", Género actualizado a \"{genero}\" para -> {nuevo_nombre}")
         else:
             print(f"No se pudo obtener el número de pista para: {archivo}")
 
-# ruta = r"C:\Users\Marco\Downloads\ficheros"
+# ruta = r"D:\Music"
+# album = "City Pop"
+# genero = "J POP"
+
 ruta = input("Ingrese la ruta de la carpeta con los archivos MP3: ")
 album = input("Ingrese el nombre del álbum: ")
+genero = input("Ingrese el género: ")
 
 print("")
-renombrar(ruta, album)
+renombrar(ruta, album, genero)
 print("")
