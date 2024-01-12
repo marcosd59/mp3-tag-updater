@@ -1,10 +1,10 @@
-##############################################################################
+#######################################################################################
 #     File Name           :     main.py
 #     Created By          :     Marcos Damian Pool Canul
 #     Creation Date       :     [2024-01-12 10:10]
 #     Last Modified       :     [2024-01-12 11:00]
-#     Description         :     Renombrar archivos MP3
-##############################################################################
+#     Description         :     Renombrar en num. de pista y el nombre del album.
+#######################################################################################
 
 import os
 from mutagen.easyid3 import EasyID3
