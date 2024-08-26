@@ -2,67 +2,72 @@
 #     File Name           :     main.py
 #     Created By          :     Marcos Damian Pool Canul
 #     Creation Date       :     [2024-01-12 10:10]
-#     Last Modified       :     [2024-01-12 16:00]
-#     Description         :     Cambia el nombre, num. pista, album y genero.
+#     Last Modified       :     [2024-08-25 20:10]
+#     Description         :     Permite seleccionar y ejecutar diversas operaciones
+#                               de manipulación de metadatos de archivos MP3 y FLAC.
 #####################################################################################
 
 import os
-from mutagen.easyid3 import EasyID3
-from mutagen import File
-from mutagen.flac import FLAC
+from pista import modificar_numero_pista
+from album import renombrar_album
+from genero import modificar_genero
+from titulo import cambiar_titulo
 
-def num_pista(archivo):
+
+def mostrar_menu():
     """
-    Obtiene el número de pista de los metadatos del archivo MP3.
+    Muestra el menú de opciones al usuario.
     """
-    try:
-        audio = EasyID3(archivo)
-        pista = int(audio['tracknumber'][0])
-        return pista
-    except (KeyError, ValueError):
-        return None
+    print("Seleccione una opción:")
+    print("1. Modificar número de pista")
+    print("2. Renombrar álbum")
+    print("3. Modificar género")
+    print("4. Cambiar título")
+    print("5. Salir")
 
-def renombrar(ruta, album, genero):
+
+def ejecutar_opcion(opcion, ruta):
     """
-    Renombra archivos MP3 en la carpeta especificada y actualiza el metadato del álbum y género.
+    Ejecuta la opción seleccionada por el usuario.
+
+    :param opcion: Opción seleccionada por el usuario.
+    :param ruta: Ruta de la carpeta que contiene los archivos de música.
     """
-    archivos = os.listdir(ruta)
-    archivos_mp3 = [archivo for archivo in archivos if archivo.lower().endswith(".mp3")]
+    if opcion == '1':
+        modificar_numero_pista(ruta)
+    elif opcion == '2':
+        album = input("Ingrese el nuevo nombre del álbum: ")
+        renombrar_album(ruta, album)
+    elif opcion == '3':
+        genero = input("Ingrese el nuevo género: ")
+        modificar_genero(ruta, genero)
+    elif opcion == '4':
+        cambiar_titulo(ruta)
+    elif opcion == '5':
+        print("Saliendo del programa...")
+        return False
+    else:
+        print("Opción no válida. Por favor, intente de nuevo.")
+    return True
 
-    for archivo in archivos_mp3:
-        ruta_antigua = os.path.join(ruta, archivo)
 
-        numero_pista = num_pista(ruta_antigua)
-        if numero_pista is not None:
-            nuevo_nombre = f"{numero_pista:02d}. {archivo}"
-            ruta_nueva = os.path.join(ruta, nuevo_nombre)
+def main():
+    """
+    Función principal que controla el flujo del programa.
+    """
+    ruta = input("Ingrese la ruta de la carpeta con los archivos de música: ")
 
-            # Renombra el archivo
-            os.rename(ruta_antigua, ruta_nueva)
+    if not os.path.isdir(ruta):
+        print("La ruta ingresada no es válida. Por favor, verifique e intente de nuevo.")
+        return
 
-            print(f"Renombrado: {archivo} -> {nuevo_nombre}")
+    while True:
+        mostrar_menu()
+        opcion = input("Ingrese el número de la opción deseada: ")
+        if not ejecutar_opcion(opcion, ruta):
+            break
+        print("")
 
-            # Actualiza el metadato del álbum
-            audio = EasyID3(ruta_nueva)
-            audio['album'] = album
-            audio.save()
 
-            # Actualiza el metadato del género
-            audio['genre'] = genero
-            audio.save()
-
-            print(f"Album actualizado a \"{album}\", Género actualizado a \"{genero}\" para -> {nuevo_nombre}")
-        else:
-            print(f"No se pudo obtener el número de pista para: {archivo}")
-
-# ruta = r"D:\Music"
-# album = "City Pop"
-# genero = "J POP"
-
-ruta = input("Ingrese la ruta de la carpeta con los archivos MP3: ")
-album = input("Ingrese el nombre del álbum: ")
-genero = input("Ingrese el género: ")
-
-print("")
-renombrar(ruta, album, genero)
-print("")
+if __name__ == "__main__":
+    main()
