@@ -1,56 +1,78 @@
-# mp3-tag-updater
+# MP3 Tag Updater
+
+![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
 
 ## Descripción
-Este proyecto proporciona herramientas para actualizar los metadatos de archivos de música en formato MP3 y FLAC. Actualiza el número de pista, el nombre del álbum y el género de las canciones de forma independiente.
 
-## Funcionalidades
-- Renombra archivos MP3 según el número de pista y agrega el nombre del álbum.
-- Actualiza los metadatos del álbum y del intérprete colaborador en cada archivo MP3.
-- Personalización del nombre del álbum y del intérprete colaborador por parte del usuario.
+El proyecto **MP3 Tag Updater** es una herramienta basada en Python que permite modificar metadatos en archivos de música, específicamente en formatos MP3 y FLAC. Este proyecto facilita la edición de los metadatos como el número de pista, el álbum, el género y el título de las canciones en una carpeta específica. Es ideal para aquellos que desean organizar y mantener actualizada su colección de música.
 
-## Archivos
-- **main.py**: Versión 2.0 del mp3-tag-updater. Combina funcionalidades de renombrar número de pista, álbum y género.
-  
-- **pista.py**: Actualiza solo el número de pista de las canciones.
+## Características
 
-- **album.py**: Actualiza solo el nombre del álbum de las canciones.
+- **Modificar número de pista:** Actualiza el número de pista en los metadatos de archivos MP3 y FLAC.
+- **Renombrar álbum:** Cambia el nombre del álbum en los archivos de música seleccionados.
+- **Modificar género:** Ajusta el género musical en los archivos MP3 y FLAC.
+- **Cambiar título:** Permite cambiar el título de cada canción en una carpeta.
 
-- **genero.py**: Actualiza solo el género de las canciones.
+## Estructura del proyecto
+
+El proyecto se organiza de la siguiente manera:
+
+```plaintext
+mp3-tag-updater/
+│
+├── pista.py          # Modificar número de pista
+├── album.py          # Renombrar álbum
+├── genero.py         # Modificar género
+├── titulo.py         # Cambiar título
+├── main.py           # Archivo principal que centraliza todas las funcionalidades
+└── README.md         # Documentación del proyecto
+```
+
+## Instalación
+
+1. **Clona el repositorio:**
+
+   ```bash
+   git clone https://github.com/marcosd59/mp3-tag-updater.git
+   cd mp3-tag-updater
+   ```
+
+2. **Instala las dependencias:**
+
+   Asegúrate de tener instalado `mutagen` para manipular los metadatos de los archivos:
+
+   ```bash
+   pip install mutagen
+   ```
 
 ## Uso
-- **main.py**: Ejecuta `main.py` y sigue las instrucciones para ingresar la ruta de la carpeta, el nombre del álbum y el género.
 
-- **pista.py**: Ejecuta `pista.py` para modificar el número de pista de todas las canciones en una carpeta.
+Para utilizar las funcionalidades del proyecto, ejecuta el archivo `main.py`:
 
-- **album.py**: Ejecuta `album.py` para modificar solo el nombre del álbum de las canciones en una carpeta.
-
-- **genero.py**: Ejecuta `genero.py` para modificar solo el género de las canciones en una carpeta.
-
-## Ejemplos de Uso
 ```bash
 python main.py
 ```
 
-```bash
-python pista.py
-```
+A continuación, se te pedirá que ingreses la ruta de la carpeta que contiene los archivos de música y se te mostrará un menú interactivo con las opciones disponibles:
 
-## Uso
-1. **Clonar el repositorio:**
-    ```bash
-    git clone https://github.com/marcosd59/mp3-tag-updater.git
-    ```
+1. Modificar número de pista
+2. Renombrar álbum
+3. Modificar género
+4. Cambiar título
+5. Salir
 
-2. **Ejecutar el script:**
-    ```bash
-    cd mp3-tag-updater
-    python main.py
-    ```
-    Se te pedirá que ingreses la ruta de la carpeta con los archivos MP3 y el nombre del álbum.
+### Ejemplo de uso
 
-## Requisitos
-- Python 3.x
-- Mutagen library (instalable con `pip install mutagen`)
+Imagina que tienes una carpeta de música en `C:\Users\Marco\Music\Vocaloid` y deseas cambiar el género a "Anime". Simplemente selecciona la opción "Modificar género" e ingresa el nuevo género cuando se te solicite.
 
 ## Contribuciones
-¡Contribuciones son bienvenidas! Si encuentras algún problema, tienes una sugerencia o quieres agregar una nueva funcionalidad, no dudes en abrir un [issue](https://github.com/marcosd59/mp3-tag-updater/issues) o enviar un [pull request](https://github.com/marcosd59/mp3-tag-updater/pulls).
+
+¡Las contribuciones son bienvenidas! Si deseas mejorar este proyecto, siéntete libre de hacer un fork y enviar un pull request.
+
+## Licencia
+
+Este proyecto está bajo la [Licencia MIT](LICENSE).
+
+## Contacto
+
+Desarrollado por Marcos Damian Pool Canul - [GitHub](https://github.com/marcosd59)
