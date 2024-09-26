@@ -2,7 +2,7 @@
 #     File Name           :     main.py
 #     Created By          :     Marcos Damian Pool Canul
 #     Creation Date       :     [2024-01-12 10:10]
-#     Last Modified       :     [2024-08-25 20:10]
+#     Last Modified       :     [2024-09-29 15:15]
 #     Description         :     Permite seleccionar y ejecutar diversas operaciones
 #                               de manipulación de metadatos de archivos MP3 y FLAC.
 #####################################################################################
@@ -12,6 +12,9 @@ from pista import modificar_numero_pista
 from album import renombrar_album
 from genero import modificar_genero
 from titulo import cambiar_titulo
+from interpretes import actualizar_interpretes
+from cambiar_cover import cambiar_cover_canciones
+from renombrar_pistas import renombrar_pistas
 
 
 def mostrar_menu():
@@ -23,7 +26,10 @@ def mostrar_menu():
     print("2. Renombrar álbum")
     print("3. Modificar género")
     print("4. Cambiar título")
-    print("5. Salir")
+    print("5. Cambiar intérpretes")
+    print("6. Cambiar portada de las canciones")
+    print("7. Renombrar canciones en orden alfabético con prefijo numérico")
+    print("8. Salir")
 
 
 def ejecutar_opcion(opcion, ruta):
@@ -44,6 +50,14 @@ def ejecutar_opcion(opcion, ruta):
     elif opcion == '4':
         cambiar_titulo(ruta)
     elif opcion == '5':
+        interpretes = input("Ingrese los intérpretes colaboradores: ")
+        actualizar_interpretes(ruta, interpretes)
+    elif opcion == '6':
+        ruta_imagen = input("Ingrese la ruta de la imagen para el cover: ")
+        cambiar_cover_canciones(ruta, ruta_imagen)
+    elif opcion == '7':
+        renombrar_pistas(ruta)
+    elif opcion == '8':
         print("Saliendo del programa...")
         return False
     else:
